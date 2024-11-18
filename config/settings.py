@@ -62,16 +62,16 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny',], # AllowAny закрывать во view
                                                      # IsAuthenticated закрыть от всех не авторезированных
 
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', # Пагинация по умолчанию для всего проекта
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination', # Пагинация по умолчанию для всего проекта
 
 }
 # Настройки срока действия токенов
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-#     # "TOKEN_OBTAIN_SERIALIZER": "users.serializer.MyTokenObtainPairSerializer",
-#     "UPDATE_LAST_LOGIN": True, # для автоматического обновления поля last_login
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    # "TOKEN_OBTAIN_SERIALIZER": "users.serializer.MyTokenObtainPairSerializer",
+    "UPDATE_LAST_LOGIN": True, # для автоматического обновления поля last_login
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

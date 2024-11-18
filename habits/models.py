@@ -1,3 +1,35 @@
+from datetime import timedelta
+
 from django.db import models
 
-# Create your models here.
+from config import settings
+
+NULLABLE = {'null': True, 'blank': True}
+
+
+class Habit(models.Model):
+
+    CHOICES = {
+        "DAY": "Day",
+        "MONTH": "Month"
+    }
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Хозяин привычки')
+    place = models.CharField(max_length=100, verbose_name='Место выполнения привычки', help_text='Укажите место выполнения привычки', **NULLABLE)
+    start_time = models.DateTimeField(verbose_name='Время начала', help_text='Во сколько необходимо выполнять привычку')
+    habit = models.CharField(verbose_name='Привычка', help_text='Опишите привычку')
+    sing_habit = models.BooleanField(verbose_name='Признак привычки', help_text='Укажите если привычка приятная')
+    related_habit = models.OneToOneField('self', on_delete=models.CASCADE, verbose_name='Связанная привычка', **NULLABLE, related_name='related_habit')
+    periodicity = models.CharField(max_length=10, choices=CHOICES, verbose_name='Периодичность привычки', default=CHOICES.get('DAY'))
+    reward = models.CharField(max_length=255, **NULLABLE, verbose_name='Вознаграждение за приятную привычку')
+    time_to_complete = models.TimeField(default=timedelta(seconds=120), verbose_name='Время выполнения привычки')
+    sing_publicity = models.BooleanField(default=False, verbose_name='Опубликовано', help_text='Отметьте, если нужно опубликовать')
+
+    class Mete:
+        verbose_name = 'Привычка'
+        verbose_name_plural = 'Привычки'
+
+    def __str__(self):
+        return f'{self.habit[0:15]}'
+
+
