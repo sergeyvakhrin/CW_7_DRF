@@ -1,6 +1,8 @@
+from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
+from habits.paginations import CustomPagination
 from users.models import User
 from users.serliazers import UserSerializer
 
@@ -16,7 +18,8 @@ class UserCreateAPIView(CreateAPIView):
         user.save()
 
 
-# class UserSetView(viewsets.ModelViewSet):
-#     serializer_class = UserSerializer
-#     permission_classes = CustomPagination
-#     permission_classes = (IsAuthenticated, )
+class UserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    pagination_class = CustomPagination
+    permission_classes = (IsAuthenticated, )
