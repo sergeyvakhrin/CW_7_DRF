@@ -18,11 +18,13 @@ class validate_type_habit:
         self.field3 = field3
 
     def __call__(self, value, *args, **kwargs):
-        sing_habit = value.get(self.field1)
+        sing_habit = value.get(self.field1)    # Todo: разобраться с передаваемыми данными. Тут какой-то огород
         related_habit = value.get(self.field2)
         reward = value.get(self.field3)
 
-        if sing_habit and related_habit is None and reward is not None:
+        print(vars(self))
+
+        if sing_habit and related_habit is None and reward is not None:    # Todo: Разобраться с ТЗ, что-то я не так понимаю
             raise serializers.ValidationError(
                 "Необходимо указать Связанную привычку и убрать вознаграждение. Либо убрать Признак приятной привычки.")
         if sing_habit and related_habit is None and reward is None:

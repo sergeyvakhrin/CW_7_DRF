@@ -30,6 +30,6 @@ class Habit(models.Model):
         verbose_name_plural = 'Привычки'
 
     def __str__(self):
-        return f'{self.habit[0:15]}'
+        return f'Я буду {self.habit} в {self.start_time} в {self.place}'
 
 

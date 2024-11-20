@@ -168,11 +168,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'users.User'
 
-# CORS_ALLOWED_ORIGINS = [
-#     '<http://localhost:8000>',  # Замените на адрес вашего фронтенд-сервера
-# ]
-#
-# CORS_ALLOW_ALL_ORIGINS = False  # запрещает не прописанным серверам обращаться
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',  # Замените на адрес вашего фронтенд-сервера
+
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000", #  Замените на адрес вашего фронтенд-сервера
+      # и добавьте адрес бэкенд-сервера
+]
+CORS_ALLOW_ALL_ORIGINS = False  # запрещает не прописанным серверам обращаться
 
 # Настройки для Celery
 # URL-адрес брокера сообщений
@@ -187,11 +191,11 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 # Настройки для Celery
-# CELERY_BEAT_SCHEDULE = {
-#     'my_task': {
-#         'task': 'materials.tasks.my_task', # Путь к задаче
-#         'schedule': timedelta(days=1),  # Расписание выполнения задачи (например, каждый день)
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    'test': {
+        'task': 'habits.tasks.test', # Путь к задаче
+        'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждый день)
+    },
+}
 
 
