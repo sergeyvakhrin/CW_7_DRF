@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
+    'django_celery_beat',
 
     'habits',
     'users',
@@ -190,12 +191,15 @@ CELERY_TASK_TRACK_STARTED = True
 # Максимальное время на выполнение задачи
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
 # Настройки для Celery
 CELERY_BEAT_SCHEDULE = {
-    'test': {
-        'task': 'habits.tasks.test', # Путь к задаче
+    'send_telegram': {
+        'task': 'habits.tasks.send_telegram', # Путь к задаче
         'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждый день)
     },
 }
 
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 

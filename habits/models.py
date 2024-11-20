@@ -24,6 +24,7 @@ class Habit(models.Model):
     reward = models.CharField(max_length=255, **NULLABLE, verbose_name='Вознаграждение за привычку')
     time_to_complete = models.DurationField(default=timedelta(seconds=120), verbose_name='Длительность выполнения привычки')
     sing_publicity = models.BooleanField(default=False, verbose_name='Опубликовано', help_text='Отметьте, если нужно опубликовать')
+    date_last_send = models.DateField(verbose_name='Дата последней отправки', help_text='Укажите дату последней отправки', **NULLABLE)
 
     class Mete:
         verbose_name = 'Привычка'
