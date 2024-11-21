@@ -5,7 +5,7 @@ from habits.validators import validata_time_complete, validate_type_habit
 
 
 class HabitSerializer(serializers.ModelSerializer):
-    time_to_complete = serializers.DurationField(validators=[validata_time_complete])
+    time_to_complete = serializers.DurationField(validators=[validata_time_complete], read_only=True)
 
     # def validate(self, data):
     #     """ Проверка типа привычки """

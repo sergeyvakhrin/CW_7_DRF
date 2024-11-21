@@ -22,8 +22,6 @@ class validate_type_habit:
         related_habit = value.get(self.field2)
         reward = value.get(self.field3)
 
-        print(vars(self))
-
         if sing_habit and related_habit is None and reward is not None:    # Todo: Разобраться с ТЗ, что-то я не так понимаю
             raise serializers.ValidationError(
                 "Необходимо указать Связанную привычку и убрать вознаграждение. Либо убрать Признак приятной привычки.")

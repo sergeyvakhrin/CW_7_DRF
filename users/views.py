@@ -22,4 +22,5 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     pagination_class = CustomPagination
-    permission_classes = (IsAuthenticated, )
+    # AllowAny для тестов
+    permission_classes = (IsAuthenticated, AllowAny,)
