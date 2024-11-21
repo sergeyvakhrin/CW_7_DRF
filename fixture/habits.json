@@ -1,0 +1,53 @@
+[
+{
+    "model": "habits.habit",
+    "pk": 17,
+    "fields": {
+        "owner": 2,
+        "place": null,
+        "start_time": null,
+        "habit": "Привычка №1",
+        "sing_habit": false,
+        "related_habit": null,
+        "periodicity": "WEEK",
+        "reward": "1",
+        "time_to_complete": "00:01:40",
+        "sing_publicity": false,
+        "date_last_send": "2024-11-21"
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 18,
+    "fields": {
+        "owner": 1,
+        "place": null,
+        "start_time": null,
+        "habit": "Привычка №2",
+        "sing_habit": false,
+        "related_habit": null,
+        "periodicity": "DAY",
+        "reward": "1",
+        "time_to_complete": "00:01:40",
+        "sing_publicity": false,
+        "date_last_send": "2024-11-20"
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 19,
+    "fields": {
+        "owner": 1,
+        "place": null,
+        "start_time": null,
+        "habit": "Привычка №2",
+        "sing_habit": false,
+        "related_habit": null,
+        "periodicity": "DAY",
+        "reward": "1",
+        "time_to_complete": "00:01:40",
+        "sing_publicity": true,
+        "date_last_send": "2024-11-20"
+    }
+}
+]
