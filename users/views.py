@@ -10,7 +10,7 @@ from users.serliazers import UserSerializer
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     def perform_create(self, serializer):
         user = serializer.save(is_active=True)
@@ -23,4 +23,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     pagination_class = CustomPagination
     # AllowAny для тестов
-    permission_classes = (IsAuthenticated, AllowAny,)
+    permission_classes = (
+        IsAuthenticated,
+        AllowAny,
+    )

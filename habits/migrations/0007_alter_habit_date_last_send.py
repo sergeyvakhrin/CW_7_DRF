@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('habits', '0006_habit_date_last_send'),
+        ("habits", "0006_habit_date_last_send"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='habit',
-            name='date_last_send',
-            field=models.DateField(blank=True, help_text='Укажите дату последней отправки', null=True, verbose_name='Дата последней отправки'),
+            model_name="habit",
+            name="date_last_send",
+            field=models.DateField(
+                blank=True,
+                help_text="Укажите дату последней отправки",
+                null=True,
+                verbose_name="Дата последней отправки",
+            ),
         ),
     ]

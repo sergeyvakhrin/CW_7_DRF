@@ -18,10 +18,10 @@ class HabitListAPIView(generics.ListAPIView):
 
 class HabitCreateAPIView(generics.CreateAPIView):
     serializer_class = HabitSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
-        """ Присваиваем создателя создаваемому объекту """
+        """Присваиваем создателя создаваемому объекту"""
         # serializer.instance.owner = self.queryset.user
         habit = serializer.save()
         habit.owner = self.request.user
@@ -47,7 +47,8 @@ class HabitDeleteAPIView(generics.DestroyAPIView):
 
 
 class HabitListPublicAPIView(generics.ListAPIView):
-    """ Отдает все привычки, у которых отмечено Опубликовано """
+    """Отдает все привычки, у которых отмечено Опубликовано"""
+
     serializer_class = HabitSerializer
     queryset = Habit.objects.filter(sing_publicity=True)
     pagination_class = CustomPagination
