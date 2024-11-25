@@ -9,7 +9,7 @@ from habits.serliazers import HabitSerializer
 class HabitListAPIView(generics.ListAPIView):
     serializer_class = HabitSerializer
     pagination_class = CustomPagination
-    permission_classes = (IsAuthenticated, IsOwner)
+    permission_classes = (IsAuthenticated, )
 
     def get_queryset(self):
         queryset = Habit.objects.filter(owner=self.request.user)

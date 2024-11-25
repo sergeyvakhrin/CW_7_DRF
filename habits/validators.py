@@ -18,21 +18,18 @@ class validate_type_habit:
         self.field2 = field2
         self.field3 = field3
 
-    def __call__(self, value, *args, **kwargs):
-        sing_habit = value.get(
-            self.field1
-        )  # Todo: разобраться с передаваемыми данными. Тут какой-то огород
+    def __call__(self, value, *args, **kwargs): # Todo: разобраться с передаваемыми данными. Тут какой-то огород
+        sing_habit = value.get(self.field1)
         related_habit = value.get(self.field2)
         reward = value.get(self.field3)
 
-        if (
-            sing_habit and related_habit is None and reward is not None
-        ):  # Todo: Разобраться с ТЗ, что-то я не так понимаю
+        if sing_habit and related_habit is None and reward is not None:
             raise serializers.ValidationError(
                 "Необходимо указать Связанную привычку и убрать вознаграждение. Либо убрать Признак приятной привычки."
             )
         if sing_habit and related_habit is None and reward is None:
             raise serializers.ValidationError("Необходимо указать Связанную привычку.")
+
         if sing_habit is False and related_habit is not None and reward is not None:
             raise serializers.ValidationError(
                 "Необходимо указать Признак приятной привычки и убрать награду. "
@@ -44,5 +41,10 @@ class validate_type_habit:
             )
         if sing_habit is False and related_habit is None and reward is None:
             raise serializers.ValidationError("Укажите Вознаграждение.")
+
         if sing_habit is False and related_habit is not None and reward is None:
             raise serializers.ValidationError("Укажите Признак приятной привычки.")
+
+
+# Валидаторы в целом работаю как нужно, но в коде лучше для каждого типа валидации описывать отдельные функции/классы
+# Так ты сможешь написать отдельно тесты на каждый валидатор и проверить "каждый маленький" кусок кода
