@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False) == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -112,11 +112,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
-        "HOST": os.getenv("HOST"),
-        "PORT": os.getenv("PORT"),
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
 
@@ -168,6 +168,15 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 AUTH_USER_MODEL = "users.User"
 
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:8000',
+# ]
+# CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
+# CORS_ALLOWED_ORIGINS = CORS_ORIGIN_WHITELIST
+
+
 CORS_ALLOWED_ORIGINS = [
     # Замените на адрес вашего фронтенд-сервера
     "http://localhost:8000",
@@ -200,7 +209,7 @@ CELERY_BEAT_SCHEDULE = {
     "send_telegram": {
         "task": "habits.tasks.send_telegram",  # Путь к задаче
         "schedule": timedelta(
-            seconds=10
+            hours=1
         ),  # Расписание выполнения задачи (например, каждый день)
     },
 }
